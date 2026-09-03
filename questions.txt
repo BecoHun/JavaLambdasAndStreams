@@ -45,4 +45,25 @@ Delete declaration methB
 Deleting one of these methods yields the correct syntax for the functional interface. 
 Adding the keyword static before any of them will cause a compilation error because static methods in interfaces should have bodies.
 
+4.
+Which of the following implementations of a functional interface is correct?
+@FunctionalInterface
+interface Service {
+    int doService(int value);
+}
+Service s3 = i -> i > 3 ? 3: -1;
+This implementation is syntactically correct: It takes a single argument and returns an int value, just as the method specification states.
+
+5.
+Which two of the following implementations of a functional interface are correct?
+@FunctionalInterface
+interface Action {
+    void doAction(int num);
+}
+Action action = i -> System.out.println(i);
+Action action = (int i) -> System.out.println(i);
+That’s right! The other two options are incorrect. 
+The option "Action action = Integer i -> System.out.println(i);" does not pass the syntax check. 
+The option "Action action = (Integer i) -> System.out.println(i);" has the Incompatible parameter type–expected int but found Integer.
+
 
