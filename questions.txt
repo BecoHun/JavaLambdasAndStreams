@@ -1,0 +1,48 @@
+1.
+Which two of the following functional interface declarations are correct?
+1.
+@FunctionalInterface
+interface Action {
+    void execute();
+    default void refresh(){}
+}
+2.
+@FunctionalInterface
+interface Action {
+    void execute();
+    default void refresh();
+}
+3.
+@FunctionalInterface
+interface Action {
+    void execute();
+    static void refresh(){}
+}
+4.
+@FunctionalInterface
+interface Action {
+    void execute();
+    void refresh(){}
+}
+1 and 3
+Only #1 and #3 are syntactically correct. #2 contains an incorrect declaration of a default method, and #4 contains two abstract methods.
+
+2.
+Which of the following method declarations can be used independently in a functional interface? 
+private static void method(){}
+void method();
+The members of an interface cannot be protected. An interface's abstract methods cannot have a body.
+
+3.
+What independent changes are needed to make the declaration of the functional interface correct?
+@FunctionalInterface
+interface A {
+    void methA();
+    public abstract void methB();
+}
+Delete declaration methA
+Delete declaration methB
+Deleting one of these methods yields the correct syntax for the functional interface. 
+Adding the keyword static before any of them will cause a compilation error because static methods in interfaces should have bodies.
+
+
