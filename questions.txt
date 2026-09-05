@@ -95,4 +95,34 @@ List<Integer> ints = new ArrayList<>();
 The Consumer interface describes a functionality that takes a parameter, performs a useful task, and returns nothing. 
 All other cases specify functionality with no side effects, generally making them useless.
 
+9.
+Which two of the following lines do not cause compilation errors?
+class Person { 
+    public Person() {}
+    public Person(final String name) {}
+} 
+Function<String, Person> stringToPerson = Person::new;
+Supplier<Person> personSupplier = Person::new;
+These variants are covariant to the specifications of Person constructors.
+
+10.
+Which of the following uses of a method reference is correct?
+class FunctionHolder {
+    public double function(final int a, boolean b) {
+        return 0; 
+    } 
+} 
+@FunctionalInterface 
+interface FirstInterface <T, U, R> {
+    R function(T firstArgument, U secondArgument); 
+} 
+FunctionHolder holder = new FunctionHolder();
+FirstInterface<Integer, Boolean, Double> first = holder::function;
+Yes, this is the correct parameterization for achieving covariance with the referenced method.
+
+11.
+Which of the following method references can be used to initialize the type reference DoublePredicate?
+boolean a(double a){return true;}
+A DoublePredicate reference accepts a value of the double type and returns a Boolean.
+
 
