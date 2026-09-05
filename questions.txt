@@ -66,4 +66,33 @@ That’s right! The other two options are incorrect.
 The option "Action action = Integer i -> System.out.println(i);" does not pass the syntax check. 
 The option "Action action = (Integer i) -> System.out.println(i);" has the Incompatible parameter type–expected int but found Integer.
 
+6.
+Which of the following two statements are true?
+The Predicate interface returns a boolean.
+The Predicate interface has a method named test().
+That’s right!
+
+7.
+What is the output of the following code implementation?
+record Person(int id, String name){} 
+// code fragment
+List<Person> persons = List.of(new Person(5, "jack"),
+        new Person(7, "john"),
+        new Person(3, "kurt"),
+        new Person(1, "arnold")
+);
+Predicate<Integer> is = i -> i > = 3;
+for (Person person :persons) {
+  System.out.print(is.test(person.id()) + " ");
+}
+true true true false
+You will see the results if the given id value is greater than or equal to 3.
+
+8.
+Which of the following implementations of the Consumer interface is correct?
+List<Integer> ints = new ArrayList<>();
+    Consumer<List<Integer>> consumer = o -> ints.add(3);
+The Consumer interface describes a functionality that takes a parameter, performs a useful task, and returns nothing. 
+All other cases specify functionality with no side effects, generally making them useless.
+
 
