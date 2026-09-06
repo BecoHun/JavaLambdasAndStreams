@@ -125,4 +125,39 @@ Which of the following method references can be used to initialize the type refe
 boolean a(double a){return true;}
 A DoublePredicate reference accepts a value of the double type and returns a Boolean.
 
+12.
+Which of the following code fragments does not cause compilation errors? 
+int x[] = {1};
+Consumer<Integer> consumer = n -> n += x[0]+=n;
+You cannot reassign the value of a captured variable, but you can change the state of the object referenced.
+
+13.
+What will be the output of the following code implementation?
+interface Suit {
+    String convertToSuit(int x);
+}
+class Quiz15 { 
+    public static void main(String[] args) {
+        Suit suit = new Suit() {
+            String[] suits = {"Diamonds", "Hearts", "Clubs", "Spades"};
+            public String convertToSuit(int n) {
+                return (n >= 1 && n < suits.length + 1)
+                    ? suits[n - 1]
+                    : null;
+            };
+        };
+        System.out.println(suit.convertToSuit(3));
+    }
+}
+Clubs
+An instance of an anonymous class implements a functional interface and provides an implementation of the convertToSet() method.
+
+14.
+What will be the output of the following code implementation?
+int summator = 5; 
+IntUnaryOperator sum = i -> summator += i; 
+System.out.println(sum.applyAsInt(2)); 
+Compilation will fail.
+There will be a compilation error because the variable used in the lambda expression should be final or effectively final.
+
 
