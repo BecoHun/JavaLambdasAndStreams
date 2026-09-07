@@ -160,4 +160,45 @@ System.out.println(sum.applyAsInt(2));
 Compilation will fail.
 There will be a compilation error because the variable used in the lambda expression should be final or effectively final.
 
+15.
+Which two of the following code fragments will compile when filling in the blank space?
+Map<Integer, Object> map = Map.of(1, 3, 5, 7);
+__________.forEach(System.out::print);
+map.keySet()
+map.values()
+This particular forEach method, taking a simple Consumer, is applicable to collections of keys and values.
+
+16.
+What will be the output of the following code implementation?
+Map<String, Integer> map = new HashMap<>();
+map.compute("y", (k, v) -> v == null ? 1 : 0);
+map.compute("z", (k, v) -> v == null ? 2 : 0);
+map.computeIfPresent("z", (k, v) -> v != null ? 3 : 0);
+map.computeIfAbsent("y", v -> v != null ? 4 : 0); System.out.println(map.values());
+[1, 3]
+That’s right!
+
+17.
+Which of the following code fragments does not cause compilation errors?
+class Person{
+    private Optional<Car> car;
+    public Optional<Car> getCar() {
+        return car;
+    }
+}
+class Car{
+    private Optional<Insurance> insurance;
+    public Optional<Insurance> getInsurance() {
+        return insurance;
+    }
+}
+class Insurance{
+}
+A.
+Optional<Person> person = Optional.of(new Person());
+Insurance insurance = person.flatMap(Person::getCar)
+    .flatMap(Car::getInsurance)
+    .get();
+In this case, you need the flatMap operation to avoid getting Optional‹Optional‹?››.
+
 
