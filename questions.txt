@@ -201,4 +201,70 @@ Insurance insurance = person.flatMap(Person::getCar)
     .get();
 In this case, you need the flatMap operation to avoid getting Optional‹Optional‹?››.
 
+18.
+What is the output of the following code implementation?
+List<String> words = 
+        List.of("john", "jack", "phillip", "antoni", "pit");
+List<String> result = words.stream()
+        .filter(w -> w.length() > 4)
+        .map(w -> w.substring(3))
+        .toList();
+System.out.println(result);
+[llip, oni]
+The stream’s input is a list of 5 strings, the elements of which are filtered by length–should be longer than 4 characters–strings "phillip" and "antoni" passed the filter. 
+Then the string is trimmed from left starting from the character with index 3. The result is formed as a List and printed in the console output.
+
+19.
+Which of the following statements are true?
+A stream is not a data structure that stores elements.
+A stream accepts elements from arrays.
+An operation with a stream produces some result but does not change the source of the stream.
+A stream is not a data structure that stores elements; a stream simply transfers elements from some source 
+(for example, data structure, array, data input/output stream) through a pipeline of computing operations. 
+An operation with a stream produces some result but does not change the source of the stream.
+
+20.
+What is the output of the following code implementation?
+List<String> words = 
+        List.of("john", "jack", "phillip", "antoni", "pit");
+List<Integer> result = words.stream()
+        .filter(w -> w.compareTo("melani") > 0)
+        .map(w -> w.length())
+        .toList();
+System.out.println(result);
+[7, 3]
+The stream's input is a list of 5 strings, the elements of which are filtered based on the lexicographic comparison with the string "melani." 
+The strings "phillip" and "pit" passed the filter because they are lexicographically "greater." 
+Then the method for getting the length of such a string is applied. The result is formed as a List and printed in the console output.
+
+21.
+Which of the following statements are true? 
+A stream can have an infinite number of elements.
+Stream elements are used only once during stream life.
+Streams can have an infinite number of elements, unlike collections. Stream elements are visited only once during stream life. 
+That is, to return to the source elements that have already been used by stream operations, you need to generate a new stream.
+
+22.
+What is the output of the following code implementation?
+List<String> words = 
+        List.of("john", "jack", "phillip", "antoni", "pit");
+List<Character> result = words.stream()
+        .filter(w -> w.matches("[a-p]+"))
+        .map(w -> w.charAt(2))
+        .toList();
+System.out.println(result);
+[h, c, i]
+The stream’s input is a list of 5 strings, the elements of which are filtered by the regex pattern. 
+The pattern "[a-p]+" as a filtering condition leaves those strings that consist only of the characters a, b, c, d … o, p and have any length. 
+The strings "john", "jack", and "phillip" passed the filter. 
+Then the char with index 2 is used from each string. The result is formed as a List and printed in the console output.
+
+23.
+Which of the following statements are true? 
+The terminal operation converts a set of stream elements into a result.
+The stream does not start executing until a terminal operation is defined.
+The terminal operation is a collection of stream elements into a certain data set. 
+Streams must have a source–the stream does not start executing until a terminal operation is defined. 
+Classes for working with streams are located in the package java.util.stream.
+
 
