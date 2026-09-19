@@ -267,4 +267,34 @@ The terminal operation is a collection of stream elements into a certain data se
 Streams must have a source–the stream does not start executing until a terminal operation is defined. 
 Classes for working with streams are located in the package java.util.stream.
 
+24.
+Which of the following statements can be used to create a stream?
+var stream1 = Stream.iterate("", s -> s += 77);
+var stream2 = Arrays.stream(new int[]{});
+The generate() and iterate() static methods of the Stream interface allow you to create endless data streams using a Supplier type supplier or 
+based on a given UnaryOperator operation. 
+The Method stream() of class Arrays returns a sequential IntStream with the specified array as its source. 
+The variant with {1, 2, 3} will generate the compile error, because array initialization is not allowed where the Supplier type parameter is expected. 
+The Stream interface doesn’t have the range() method.
+
+25.
+What is the output of the following code implementation?
+var result = IntStream.range(1, 4)
+        .map(n -> ++n)
+        .sum();
+System.out.print(result);
+9
+The stream’s input is an integer range from 1 (included) to 4 (not included)—generated sequence: 1, 2, 3. 
+The next step is to use pre-increment (generated sequence: 2, 3, 4) rather than the sum of the value. The result is printed in the console output.
+
+26.
+What is the output of the following code implementation?
+var i = 1;
+var result = IntStream.generate(()-> ++i)
+        .limit(3)
+        .sum();
+System.out.print(result);
+Compilation fails
+There is compilation error, because the local variable i referenced from a lambda expression must be final or effectively final.
+
 
