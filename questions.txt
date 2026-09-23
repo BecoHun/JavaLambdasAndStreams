@@ -363,4 +363,61 @@ System.out.print(result);
 The list of integer values calls the stream() method, which returned the Stream instance. Then this stream converted to IntStream by mapToInt() method. 
 The next step–filtering by value–if value less than 6, then element is drops. For the new stream calculates the average value and returns as a result.
 
+32.
+Which of the following operators are terminal? 
+collect
+reduce
+findAny
+forEach
+The collect(), reduce(), findAny(), forEach() are the terminal operations.
+
+33.
+What is the output of the following code implementation?
+class Order {
+    long orderId;
+    double amount;
+
+    public Order(long orderId, double amount) {
+        this.orderId = orderId;
+        this.amount = amount;
+    }
+
+    public String toString() {
+        return orderId + ", " + amount;
+    }
+} 
+List<Order> orders = Arrays.asList(
+        new Order(1, 50),
+        new Order(5, 70),
+        new Order(7, 70));
+orders.stream()
+        .reduce((p1, p2) -> p1.amount > p2.amount ? p1 : p2)
+        .ifPresent(System.out::println);
+7, 70.0
+The stream's input is a list of Order objects. For stream a terminal operation is used—the reduce() method, which stores the object with the largest amount field value. 
+Then print the result to console output if the result is present.
+
+34.
+What piece of code should be inserted instead of a comment // line 1 to print true to the console? 
+List<Integer> integers = List.of(1, 2, 3, 1, 7);
+boolean match = integers.stream()
+        .// line 1
+System.out.print(match);
+anyMatch(i -> i == 2);
+The list of integer values call the stream() method, which returns the Stream instance. 
+Calling the noneMatch(i -› i == 2) method will return false, because 2 is present in the source list of integers. 
+Calling the allMatch(i -› i == 2) method will return false, because 3 and 7 are present in the source list of integers and do not match the condition. 
+Calling the anyMatch(i -› i == 2) method will return true, because there is an element in the source list of integers which matches the condition. 
+Calling the findFirst() method returned an Integer object.
+
+35.
+What is the output of the following code implementation?
+var result = Stream.of(0, 1, 2, 3)
+        .map(String::valueOf)
+        .count()
+        .findAny();
+System.out.println(result);
+Compilation fails
+After the terminal operation is performed (count() in this case), the stream pipeline is considered consumed, and can no longer be used.
+
 
