@@ -420,4 +420,74 @@ System.out.println(result);
 Compilation fails
 After the terminal operation is performed (count() in this case), the stream pipeline is considered consumed, and can no longer be used.
 
+36.
+Which of the following methods are in the Collectors class?
+toMap
+reducing
+joining
+The java.util.stream.Collectors class has the toMap(), reducing(), and joining() methods.
+
+37.
+What is the output of the following code implementation? 
+List<String> strings = Arrays.asList("a1","b2","c3","a1");
+var map = strings.stream()
+        .collect(Collectors.groupingBy((p) -> p.substring(1, 2),
+                Collectors.joining(":")));
+System.out.println(map);        
+{1=a1:a1, 2=b2, 3=c3}
+The stream's input is a list of Strings. 
+The elements of stream are grouped in Map by the second char in each of the strings, and also uses the joining operation for duplicated keys.
+
+38.
+What is the output of the following code implementation?
+enum Role {CLIENT, ADMIN}
+enum Permission {MEDIUM, HIGH}
+record User(Role role, Permission permission, String login) {
+}
+List<User> userList = List.of( 
+        new User(Role.ADMIN, Permission.MEDIUM, "Jack"),
+        new User(Role.CLIENT, Permission.HIGH, "Bruce"),
+        new User(Role.ADMIN, Permission.HIGH, "Amanda"),
+        new User(Role.ADMIN, Permission.HIGH, "Clarissa")
+); 
+var result = userList.stream() 
+        .filter(u -> u.permission() == Permission.HIGH) 
+        .collect(Collectors.groupingBy(User::permission, 
+                Collectors.groupingBy(u -> u.role(), 
+                        Collectors.mapping(User::login, 
+                                Collectors.toList())))); 
+System.out.println( 
+        result.get(Permission.HIGH) 
+                .get(Role.ADMIN) 
+                .get(0) 
+);
+Amanda
+The stream's input is a list of User objects. The elements of the stream filtered by permission value are users with the names Bruce, Amanda, and Clarissa passed the filter. 
+The users from the new stream are grouped in an external map by permission. 
+The key for all elements in the map will be "HIGH". 
+The value will be the internal map, which is created by the grouping operation with the user’s roles as keys and the user’s names as values. 
+In the result variable will be the next structure—{HIGH={ADMIN=[Amanda, Clarissa], CLIENT=[Bruce]}}. The console output will be "Amanda."
+
+39.
+What is the output of the following code implementation?
+List<Integer> integerList = List.of(1, 5, 9, 2, 4);
+var result = integerList.stream()
+        .filter(i -> i <= 5)
+        .collect(Collectors.summarizingInt(i -> i += 1))    
+        .getSum();
+System.out.println(result); 
+16
+The stream’s input is a list of integers. The next step is filtering by value: If the value is less than or equal 5, then the element is passing the filter. 
+Then elements collected by the Collectors.summarizingInt() method returns a Collector which applies an int-producing mapping function to each input element. 
+Then the sum is calculated and printed to the console.
+
+40.
+Which of the following methods must be implemented when creating your custom Collector?
+accumulator
+finisher
+combiner
+characteristics
+The java.util.stream.Collector interface is used to collect stream elements into some specific container. 
+It contains the following methods: accumulator(), combiner(), finisher(), and characteristics().
+
 
